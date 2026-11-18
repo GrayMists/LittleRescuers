@@ -302,6 +302,8 @@ local ANIMALS = {
     hedgehog = { body = hex(0xB28A62), ear = "round", inner = hex(0xF2D7B5), spikes = true },
     owl = { body = hex(0xA77B5B), ear = "tuft", inner = hex(0xF4E2C8), beak = true },
     pig = { body = hex(0xFFA9C4), ear = "round", inner = hex(0xFF7FA6), snout = true },
+    goat = { body = hex(0xF7F4EE), ear = "round", inner = hex(0xFFD9D9), horns = true },
+    squirrel = { body = hex(0xE8803A), ear = "tri", inner = hex(0xFFE3C2), tail = true },
 }
 Dr.ANIMALS = ANIMALS
 
@@ -335,6 +337,12 @@ function Dr.animal(kind, x, y, s, t, mood, hat)
         for side = -1, 1, 2 do
             Dr.ellipse(x + side * 10 * s, y - 38 * s, 7 * s, 20 * s, b)
             Dr.ellipse(x + side * 10 * s, y - 37 * s, 3.5 * s, 14 * s, a.inner, 1, true)
+        end
+    end
+    if a.tail then Dr.ellipse(x + 30 * s, y - 14 * s, 14 * s, 26 * s, shade(b, -0.1)); Dr.ellipse(x + 31 * s, y - 24 * s, 7 * s, 14 * s, a.inner, 1, true) end
+    if a.horns then
+        for side = -1, 1, 2 do
+            Dr.poly({ x + side * 6 * s, y - 22 * s, x + side * 15 * s, y - 22 * s, x + side * 14 * s, y - 38 * s }, C.panelD)
         end
     end
     -- голова
