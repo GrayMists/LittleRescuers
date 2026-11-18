@@ -301,6 +301,8 @@ local ANIMALS = {
     raccoon = { body = hex(0xA3A8B5), ear = "tri", inner = hex(0xE6E8EE), mask = true },
     hedgehog = { body = hex(0xB28A62), ear = "round", inner = hex(0xF2D7B5), spikes = true },
     owl = { body = hex(0xA77B5B), ear = "tuft", inner = hex(0xF4E2C8), beak = true },
+    frog = { body = hex(0x6CCB5F), ear = "none", inner = hex(0xE4F5B8), eyesTop = true },
+    turtle = { body = hex(0x9BD36B), ear = "none", inner = hex(0xE4F5B8), shell = hex(0x3F9A5B) },
 }
 Dr.ANIMALS = ANIMALS
 
@@ -336,8 +338,17 @@ function Dr.animal(kind, x, y, s, t, mood, hat)
             Dr.ellipse(x + side * 10 * s, y - 37 * s, 3.5 * s, 14 * s, a.inner, 1, true)
         end
     end
+    if a.shell then   -- панцир позаду голови
+        for side = -1, 1, 2 do Dr.ellipse(x + side * 26 * s, y + 30 * s, 10 * s, 7 * s, b) end
+        Dr.ellipse(x, y + 12 * s, 40 * s, 28 * s, a.shell)
+        Dr.ellipse(x, y + 6 * s, 30 * s, 18 * s, shade(a.shell, 0.25))
+        for k = -1, 1 do Dr.line(shade(a.shell, -0.3), 2 * s, x + k * 22 * s, y + 30 * s, x + k * 14 * s, y + 38 * s) end
+    end
     -- голова
     Dr.circle(x, y, 27 * s, b)
+    if a.eyesTop then   -- вирячені очі зверху
+        for side = -1, 1, 2 do Dr.circle(x + side * 14 * s, y - 23 * s, 11 * s, b) end
+    end
     if a.ear == "flop" then
         for side = -1, 1, 2 do Dr.ellipse(x + side * 25 * s, y - 4 * s, 8 * s, 16 * s, shade(b, -0.2)) end
     end
@@ -345,7 +356,7 @@ function Dr.animal(kind, x, y, s, t, mood, hat)
     if a.mask then Dr.ellipse(x, y - 4 * s, 22 * s, 8 * s, shade(b, -0.5), 1, true) end
     -- очі
     for side = -1, 1, 2 do
-        local ex, ey = x + side * 10 * s, y - 4 * s
+        local ex, ey = x + side * (a.eyesTop and 14 or 10) * s, y + (a.eyesTop and -23 or -4) * s
         if blink or mood == "sleep" then
             Dr.line(C.dark, 2.5 * s, ex - 4 * s, ey, ex + 4 * s, ey)
         else
