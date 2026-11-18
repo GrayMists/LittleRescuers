@@ -83,7 +83,7 @@ function M.new()
         Snd.play("splash")
         local target
         for k = 1, 5 do
-            local fx, fy = fireSpot(k)
+            local fx = fireSpot(k)
             if o.fires[k] > 0 and math.abs(fx - bx) < 62 and (not target or math.abs(fx - bx) < math.abs(fireSpot(target) - bx)) then target = k end
         end
         local gy = target and select(2, fireSpot(target)) + 20 or 420
