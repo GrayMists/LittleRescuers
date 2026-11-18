@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "name": "littlerescuers.zip",
+  "items": ["LittleRescuers.sh", "littlerescuers"],
+  "items_opt": [],
+  "attr": {
+    "title": "Little Rescuers",
+    "porter": ["Claude"],
+    "desc": "Маленькі рятувальники: пожежна, поліція, вертоліт і човен рятують звірят. Гра для дітей 4–6 років.",
+    "inst": "Ready to run.",
+    "genres": ["casual", "kids"],
+    "image": {"screenshot": "screenshot.png"},
+    "rtr": true,
+    "exp": false,
+    "runtime": ["love_11.5"],
+    "reqs": [],
+    "arch": ["aarch64"]
+  }
+}

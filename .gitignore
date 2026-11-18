@@ -1,0 +1,10 @@
+dist/
+port/littlerescuers/gamedata/
+port/littlerescuers/log.txt
+port/littlerescuers/save/
+tools/voice_mp3/
+tools/voice_todo.txt
+game/assets/voice/**/*.wav
+.DS_Store
+__pycache__/
+.claude/
