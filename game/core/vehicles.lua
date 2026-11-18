@@ -1,6 +1,6 @@
 -- Машини рятувальників (вигляд збоку, дивляться праворуч; flip = -1 — ліворуч).
 -- Ve.draw(kind, x, y, s, t, opt): x, y — точка на землі/воді під серединою машини.
--- opt: { siren = true, flip = -1, rotor = true, driver = true, ladder = 0..1 }
+-- opt: { siren = true, flip = -1, rotor = true, driver = true, ladder = 0..1, ladderMax = кут (рад, 0.9), ladderExt = витяг (px, 60) }
 local Dr = require("core.draw")
 local lg = love.graphics
 local C = Dr.C
@@ -49,9 +49,9 @@ function draw.fire(t, o)
     local lad = o.ladder or 0
     lg.push()
     lg.translate(-60, -78)
-    lg.rotate(-lad * 0.9)
-    Dr.rrect(0, -6, 110 + lad * 60, 12, 5, C.grey)
-    for k = 0, 6 + math.floor(lad * 4) do Dr.line(Dr.outlineOf(C.grey), 2, 10 + k * 15, -5, 10 + k * 15, 5) end
+    lg.rotate(-lad * (o.ladderMax or 0.9))
+    Dr.rrect(0, -6, 110 + lad * (o.ladderExt or 60), 12, 5, C.grey)
+    for k = 0, 6 + math.floor(lad * (o.ladderExt or 60) / 15) do Dr.line(Dr.outlineOf(C.grey), 2, 10 + k * 15, -5, 10 + k * 15, 5) end
     lg.pop()
     Dr.rrect(-90, -72, 120, 54, 12, C.red)                -- кузов
     Dr.rrect(26, -84, 60, 66, 16, C.red)                  -- кабіна

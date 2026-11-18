@@ -301,6 +301,7 @@ local ANIMALS = {
     raccoon = { body = hex(0xA3A8B5), ear = "tri", inner = hex(0xE6E8EE), mask = true },
     hedgehog = { body = hex(0xB28A62), ear = "round", inner = hex(0xF2D7B5), spikes = true },
     owl = { body = hex(0xA77B5B), ear = "tuft", inner = hex(0xF4E2C8), beak = true },
+    pig = { body = hex(0xFFA9C4), ear = "round", inner = hex(0xFF7FA6), snout = true },
 }
 Dr.ANIMALS = ANIMALS
 
@@ -371,6 +372,11 @@ function Dr.animal(kind, x, y, s, t, mood, hat)
             lg.arc("line", "open", x, y + 7 * s, 6 * s, math.pi * 0.15, math.pi * 0.85, 12)
         end
         if a.teeth then Dr.rrect(x - 3 * s, y + 11 * s, 6 * s, 5 * s, 1, C.white, 1) end
+    end
+    if a.snout then
+        Dr.ellipse(x, y + 7 * s, 12 * s, 9 * s, shade(b, -0.12))
+        Dr.circle(x - 4 * s, y + 7 * s, 2 * s, C.dark, 1, true)
+        Dr.circle(x + 4 * s, y + 7 * s, 2 * s, C.dark, 1, true)
     end
     if hat then Dr.hat(hat, x, y - 22 * s, s) end
 end
