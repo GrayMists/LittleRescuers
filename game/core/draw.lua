@@ -209,8 +209,8 @@ end
 
 -- ---------- Природа ----------
 
-function Dr.cloud(x, y, s, a)
-    lg.setColor(1, 1, 1, a or 0.95)
+function Dr.cloud(x, y, s, a, col)
+    if col then color(col, a or 0.95) else lg.setColor(1, 1, 1, a or 0.95) end
     for _, p in ipairs({ { -30, 6, 22 }, { -8, -8, 28 }, { 22, -2, 24 }, { 40, 10, 16 }, { 5, 12, 22 } }) do
         lg.circle("fill", x + p[1] * s, y + p[2] * s, p[3] * s, 28)
     end
